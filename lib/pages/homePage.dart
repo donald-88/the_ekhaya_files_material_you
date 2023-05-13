@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+import 'tabs/home.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
 
   void onTabTapped(int index) {
@@ -18,9 +20,7 @@ class _HomeState extends State<Home> {
   }
 
   final List _screens = [
-    const Center(
-      child: Text('Home'),
-    ),
+    Home(),
     const Center(
       child: Text('Notifications'),
     ),
@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        extendBodyBehindAppBar: true,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: onTabTapped,
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/icons/home.svg',
                   color: Colors.black38),
-              label: 'Home',
+              label: 'HomePage',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
